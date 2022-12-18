@@ -41,7 +41,7 @@ const UserController = {
     },
 
     update:(request, response)=>{
-        User.findByIdAndUpdate({_id:request.params.id}, request.body, {new:true, runValidators: true})
+        User.findByIdAndUpdate({_id:request.params.id},request.body,{new:true, runValidators:true})
             .then((player)=>{
                 // console.log(player)
                 response.status(200).json({upgradePlayer: player})

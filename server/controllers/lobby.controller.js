@@ -6,7 +6,7 @@ const LobbyController = {
         response.status(200).json({message: "Your Lobby is full of bots."})
     },
 
-    create: (response, request)=>{
+    create: (request, response)=>{
         Lobby.create(request.body)
             .then((server)=>{
                 console.log(server)

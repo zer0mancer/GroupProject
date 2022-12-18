@@ -12,5 +12,6 @@ app.use(cors({
 
 require('./config/mongoose.config')
 require('./routes/user.routes')(app)
+require('./routes/lobby.routes')(app)
 
 app.listen(port, () => console.log(`This amp goes up to the volume of: ${port}`));

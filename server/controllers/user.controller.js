@@ -6,7 +6,7 @@ const UserController = {
         response.status(200).json({message: "Your user is actually a R E P L I C A N T"})
     },
 
-    create: (response, request)=>{
+    create: (request, response)=>{
         User.create(request.body)
             .then((newUser)=>{
                 console.log(newUser)

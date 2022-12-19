@@ -1,9 +1,24 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const HomePage = () => {
+
+    const [ currentUser, setCurrentUser ] = useState({})
+
+    const id = "63a0e9ae1203f0766542c9e5"
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/users/${id}`)
+            .then(res => {
+                console.log(res);
+                setCurrentUser(res.data.user)
+            })
+            .catch(err => console.log(err))
+    }, []);
+
   return (
     <div className='text-slate-700 flex flex-col gap-4 justify-center'>
-        <h1 className="text-3xl font-bold text-center">Welcome USERNAME</h1>
+        <h1 className="text-3xl font-bold text-center">Welcome {currentUser.username}</h1>
         <div>
             <table className='border'>
                 <thead className='border'>

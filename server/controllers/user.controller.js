@@ -17,12 +17,12 @@ const UserController = {
             })
     },
 
+    // CHANGED TO FINDONE AND MOVED MESSAGE TO OBJ INSIIDE OF FIRST RESPONSE
     playerOne: (request, response)=>{
-        User.find({_id:request.params.id})
-            .then((user)=>{
+        User.findOne({_id:request.params.id})
+            .then((singleUser)=>{
                 // console.log(user)
-                response.status(200).json({user})
-                response.status(200).json({message: "Ready Player One"})
+                response.status(200).json({user:singleUser, message: "Ready Player One"})
             })
             .catch((error)=>{
                 response.status(400).json({message: "Sorry but that Player cannot be found. You might need to download a patch.", error: error})

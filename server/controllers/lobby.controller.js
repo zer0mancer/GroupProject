@@ -21,11 +21,10 @@ const LobbyController = {
         Lobby.find({_id:request.params.id})
             .then((server)=>{
                 // console.log(server)
-                response.status(200).json({server})
-                response.status(200).json({message: "Lobby Located"})
+                response.status(200).json({server:server,message: "Lobby Located"})
             })
             .catch((error)=>{
-                response.status(400).json({message: "Are you sure your friends said to meet you here? It doesn't exist.", error: error})
+                response.status(400).json({message: "Are you sure your friends said to meet you here? It doesn't exist.",error:error})
             })
     },
 
@@ -41,10 +40,10 @@ const LobbyController = {
     },
 
     update:(request, response)=>{
-        Lobby.findByIdAndUpdate({_id:request.params.id}, request.body, {new:true, runValidators: true})
+        Lobby.findByIdAndUpdate({_id:request.params.id},request.body,{new:true, runValidators:true})
             .then((lobby)=>{
                 // console.log(lobby)
-                response.status(200).json({upgradeLobby: lobby})
+                response.status(200).json({upgradeLobby:lobby})
             })
             .catch((error)=>{
                 response.status(400).json({message: "You're being bottle-necked. Upgrade your PC before trying to upgrade your Lobby again.", error: error})
@@ -55,10 +54,10 @@ const LobbyController = {
         Lobby.findByIdAndDelete({_id:request.params.id})
             .then((server)=>{
                 console.log(server)
-                response.status(200).json({message:"HACK THE PLANET", shutDown: server})
+                response.status(200).json({message:"HACK THE PLANET",shutDown: server})
             })
             .catch((error)=>{
-                response.status(400).json({message: "Cannot compute", error: error})
+                response.status(400).json({message: "Cannot compute",error: error})
             })
     }
 }

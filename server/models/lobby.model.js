@@ -15,30 +15,10 @@ const LobbySchema = new mongoose.Schema({
         type: Number,
         required: [true, "A player limit is required for your lobby!"]
     },
-    pc: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    playstation: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    xbox: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    switch: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    mac: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    steamdeck: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
+    platform: {
+        type: String,
+        required: [true, "We need to know what platform this game is being hosted on"]
+    }
 },{timestamps:true})
 
 // >>Might need to be changed to Lobbys if there is an error.

@@ -166,6 +166,8 @@ e2e/*.map
 # System Files
 .DS_Store/
 
+.env
+
 ### Node ###
 # Logs
 

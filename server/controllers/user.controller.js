@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+// Need to import some config & secretcode.
 
 const UserController = {
 
@@ -9,8 +10,11 @@ const UserController = {
     create: (request, response)=>{
         User.create(request.body)
             .then((newUser)=>{
+                const userToken = jwt.sign({
+                    id: newUser._id
+                }, secretCode)
                 console.log(newUser)
-                response.status(201).json({newUser})
+                response.status(201).cookie("userToken", userToken, {httpOnly: true}).json({message: "user created with token", user: newUser, token: userToken})
             })
             .catch((err0r)=>{
                 response.status(400).json({message: "User is not playable. They are an NPC", error: err0r})
@@ -67,13 +71,25 @@ const UserController = {
             if(existingUser === null){
                 return response.status(400).json({error: "That user does not exist"});
             }
-            const correctPassword = await bcrypt.compare(request.body.password, User.password);
+            // compare first the input to the existing user's password. We don't throw in User since we already grabbed it.
+            const correctPassword = await bcrypt.compare(request.body.password, existingUser.password);
 
             if(!correctPassword){
-                return response.status(400).json({error: "That password doesn't seem quite right, try again"})
+                return response.status(400).json({error: "That password doesn't seem quite right, try again"});
             }
-            // Need to grab userToken here. 
+            const userToken = jwt.sign({
+                id: user._id
+            }, process.env.secretCode);
+            response.cookie("userToken", userToken, {
+                httpOnly: true
+            }).json({message: "Level Passed!", user: existingUser, token: userToken});
+    },
+    
+    logout: (request, response)=>{
+        response.clearCookie('userToken');
+        response.status(200);
     }
+
 }
 
 module.exports = UserController;

@@ -3,29 +3,27 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ onSubmitHandler, formErrors}) => {
 
-    const [ userName, setUserName ] = useState("");
-    const [ firstName, setFirstName ] = useState("");
-    const [ lastName, setLastName ] = useState("");
+    const [ username, setUsername ] = useState("");
+    // const [ firstName, setFirstName ] = useState("");
+    // const [ lastName, setLastName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("")
-    const [ formErrors, setFormErrors ] = useState({})
-    const [ dataChange, setDataChange ] = useState("");
-    const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
+    // const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
 
     const navigate = useNavigate();
 
-    const handleUserName = (e) => {
-        setUserName(e.target.value)
+    const handleUsername = (e) => {
+        setUsername(e.target.value)
     };
-    const handleFirstName = (e) => {
-        setFirstName(e.target.value)
-    };
-    const handleLastName = (e) => {
-        setLastName(e.target.value)
-    };
+    // const handleFirstName = (e) => {
+    //     setFirstName(e.target.value)
+    // };
+    // const handleLastName = (e) => {
+    //     setLastName(e.target.value)
+    // };
     const handleEmail = (e) => {
         setEmail(e.target.value)
     }; 
@@ -38,40 +36,31 @@ const RegistrationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/rotten_potatoes/user', {
-            userName,
-            firstName,
-            lastName,
+        onSubmitHandler({
+            username,
             email,
             password,
-            confirmPassword})
-        .then(res =>
-            {console.log(res);
-            setAccessToken(localStorage.setItem('accessToken', res.data.token));
-            setDataChange(Math.random());
-            navigate("/");
-            window.location.reload(false);
-        })
-        .catch(err => {
-            console.log(err);
-            const errRes = err.response.data.error.errors
-            setFormErrors(errRes);
-        })
+            confirmPassword
+        });
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("")
     }
 
   return (
-    <div className='mb-44'>
+    <div className='mb-44 absolute top-[103px] text-black right-10 z-100 bg-white border border-black p-4'>
         <div className='flex flex-col items-center'>
             <h1 className="text-2xl m-3">Register User</h1>
-        <form onSubmit={handleSubmit} className="w-[500px] border border-black p-4 flex flex-col">
+        <form onSubmit={handleSubmit} className="w-[500px] flex flex-col">
             <div className='flex'>
                 <section className='m-4'>
                 <div className="flex flex-col gap-2">
-                    {formErrors.userName && <p className="text-center text-red-500">{formErrors.userName.message}</p>}
+                    {formErrors.username && <p className="text-center text-red-500">{formErrors.username.message}</p>}
                         <label htmlFor="username">Username: </label>
-                        <input id="username" className="border border-black rounded w-[400px]" type="text" onChange={handleUserName} value={userName}/>
+                        <input id="username" className="border border-black rounded w-[400px]" type="text" onChange={handleUsername} value={username}/>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    {/* <div className="flex flex-col gap-2">
                     {formErrors.firstName && <p className="text-center text-red-500">{formErrors.firstName.message}</p>}
                         <label htmlFor="firstName">First Name: </label>
                         <input id="firstName" className="border border-black rounded w-[400px]" type="text" onChange={handleFirstName} value={firstName}/>
@@ -80,7 +69,7 @@ const RegistrationForm = () => {
                     {formErrors.lastName && <p className="text-center text-red-500">{formErrors.lastName.message}</p>}
                         <label htmlFor="lastName">Last Name: </label>
                         <input id="lastName" className="border border-black rounded" type="text" onChange={handleLastName} value={lastName}/>
-                    </div>
+                    </div> */}
                     <div className="flex flex-col gap-2">
                     {formErrors.email && <p className="text-center text-red-500">{formErrors.email.message}</p>}
                         <label htmlFor="email">Email: </label>
@@ -98,10 +87,9 @@ const RegistrationForm = () => {
                     </div>
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-red-500 hover:bg-red-400 text-white">Register</button>
+                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white">Register</button>
         </form>
     </div>
-    <Link to="/rotten_potatoes/login" className="underline">Back to Sign In</Link>
     </div>
   )
 }

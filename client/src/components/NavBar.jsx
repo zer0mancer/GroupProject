@@ -39,18 +39,19 @@ const NavBar = () => {
           .then(res => { 
             console.log(res);
             setUserId(sessionStorage.setItem("userId", res.data.newUser._id));
+            setIsRegistrationClicked(false);
           })
           .catch(err => {
             console.log(err);
-            const errObj = err.response.data.error.errors
-            setFormErrors(errObj)
+            const errObj = err.response.data.error.errors;
+            setFormErrors(errObj);
           })
       };
 
-    //=====LOGS OUT USER, REMOVES LOCAL STOREAGE AND THEN NAVIGATES BACK HOME=====
+    //=====LOGS OUT USER, REMOVES SESSION DATA AND THEN NAVIGATES BACK HOME=====
     const handleLogout = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('userId');
+        // sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('userId');
         navigate("/");
         window.location.reload(false)
       };
@@ -61,9 +62,9 @@ const NavBar = () => {
     }
 
   return (
-    <div className="flex justify-between items-center bg-slate-700 text-white p-2 relative">
+    <div className="grid grid-cols-3 items-center bg-slate-700 text-white p-2 relative w-full">
         <div>
-            <Link to="" className="hover:text-gray-200">USER NAME</Link>
+            <Link to="/lobriary/user/63a10803e2cd7833b2da60aa" className="hover:text-gray-200 underline">USER NAME</Link>
         </div>
         <div className='flex flex-col gap-2'>
             <h1 onClick={handleHomeClick} className="text-3xl font-bold cursor-pointer">The Lobriary</h1>
@@ -71,10 +72,15 @@ const NavBar = () => {
                 <NavButton onClickHandler={handleLobbyClick}>Make a lobby</NavButton>
             </Link>
         </div>
-        <div>
-            <NavButton 
-            onClickHandler={handleLoginClick}>Login</NavButton>
-        </div>
+        {userId ? 
+          <div>
+              <NavButton onClickHandler={handleLogout}>Logout</NavButton>
+          </div>
+        :
+          <div>
+              <NavButton onClickHandler={handleLoginClick}>Login</NavButton>
+          </div>
+        }
         {isLoginClicked && <LoginForm 
         onClickHandler={handleRegistrationClicked}
         formErrors={formErrors}

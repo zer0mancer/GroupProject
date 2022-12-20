@@ -7,7 +7,7 @@ const LoginForm = ({onClickHandler}) => {
     const [ password, setPassword ] = useState("");
     const [ formErrors, setFormErrors ] = useState()
     const [ dataChange, setDataChange ] = useState("");
-    const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
+    const [ accessToken, setAccessToken ] = useState(sessionStorage.getItem('accessToken'));
 
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const LoginForm = ({onClickHandler}) => {
             password,})
         .then(res =>
             {console.log(res);
-            setAccessToken(localStorage.setItem('accessToken', res.data.token));
+            setAccessToken(sessionStorage.setItem('accessToken', res.data.token));
             navigate("/");
             window.location.reload(false);
         })

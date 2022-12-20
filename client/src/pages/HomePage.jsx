@@ -4,11 +4,10 @@ import axios from 'axios';
 const HomePage = () => {
 
     const [ currentUser, setCurrentUser ] = useState({})
-
-    const id = "63a0e9ae1203f0766542c9e5"
+    const [ userId, setUserId ] = useState(sessionStorage.getItem('userId'))
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/users/${id}`)
+        axios.get(`http://localhost:8000/api/users/${userId}`)
             .then(res => {
                 console.log(res);
                 setCurrentUser(res.data.user)

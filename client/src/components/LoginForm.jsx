@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-const LoginForm = () => {
+const LoginForm = ({onClickHandler}) => {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ formErrors, setFormErrors ] = useState()
@@ -37,10 +37,10 @@ const LoginForm = () => {
     }
 
     return (
-    <div className='mb-96'>
+    <div className='mb-96 absolute top-[103px] text-black right-10 z-100 bg-white border border-black p-4'>
         <div className='flex flex-col items-center'>
             <h1 className="text-2xl m-3">Login User</h1>
-        <form onSubmit={handleSubmit} className="w-[500px] border border-black p-4 flex flex-col">
+        <form onSubmit={handleSubmit} className="w-[500px]  flex flex-col">
             <div className='flex'>
                 <section className='m-4'>
                     <div className="flex flex-col gap-2">
@@ -54,11 +54,11 @@ const LoginForm = () => {
                     </div>
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-red-500 hover:bg-red-400 text-white">Login</button>
+                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white">Login</button>
         </form>
         <div className="flex gap-2">
             <h1>New User?</h1>
-            <Link to="/rotten_potatoes/registration" className="underline">Register</Link>
+            <button className="underline" onClick={() => onClickHandler()}>Register</button>
         </div>
     </div>
     </div>

@@ -23,30 +23,6 @@ const UserSchema = new mongoose.Schema({
         minLength:[8, "Password must be at least 8 characters long"],
         maxLength:[20, "Password cannot exceed 20 characters, You will surely forget it"]
     },
-    pc: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    playstation: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    xbox: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    switch: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    mac: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
-    steamdeck: {
-        type: Boolean,
-        required:[true, "platform status required"]
-    },
 },{timestamps:true})
 
 UserSchema.virtual('confirmPassword')

@@ -1,5 +1,8 @@
 const User = require('../models/user.model');
-// Need to import some config & secretcode.
+require ('dotenv').config();
+const jwt = require('jsonwebtoken');
+const secretCode = process.env.SECRET_KEY;
+const bcrypt = require('bcrypt');
 
 const UserController = {
 
@@ -21,7 +24,7 @@ const UserController = {
             })
     },
 
-    // CHANGED TO FINDONE AND MOVED MESSAGE TO OBJ INSIIDE OF FIRST RESPONSE
+    // CHANGED TO FINDONE AND MOVED MESSAGE TO OBJ INSIDE OF FIRST RESPONSE
     playerOne: (request, response)=>{
         User.findOne({_id:request.params.id})
             .then((singleUser)=>{
@@ -79,15 +82,16 @@ const UserController = {
             }
             const userToken = jwt.sign({
                 id: user._id
-            }, process.env.secretCode);
-            response.cookie("userToken", userToken, {
-                httpOnly: true
-            }).json({message: "Level Passed!", user: existingUser, token: userToken});
+            }, secretCode);
+            response.cookie("userToken", userToken,
+                {httpOnly: true}
+                ).json({message: "Level Passed!", user: existingUser, token: userToken});
     },
     
     logout: (request, response)=>{
         response.clearCookie('userToken');
-        response.status(200);
+        // This does status(200) on server side AS WELL as thumbs up on client side.
+        response.sendStatus(200);
     }
 
 }

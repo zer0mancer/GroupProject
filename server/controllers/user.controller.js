@@ -60,6 +60,19 @@ const UserController = {
             .catch((error)=>{
                 response.status(400).json({message: "That player is using cheats and cannot be killed", error: error})
             })
+    },
+
+    login: async(request, response)=>{
+        const existingUser = await User.findOne({email: request.body.email});
+            if(existingUser === null){
+                return response.status(400).json({error: "That user does not exist"});
+            }
+            const correctPassword = await bcrypt.compare(request.body.password, User.password);
+
+            if(!correctPassword){
+                return response.status(400).json({error: "That password doesn't seem quite right, try again"})
+            }
+            // Need to grab userToken here. 
     }
 }
 

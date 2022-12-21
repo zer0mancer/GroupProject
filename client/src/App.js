@@ -11,6 +11,7 @@ function App() {
         <Route element={<Navigate to="/lobriary/homepage"/>} path="/"/>
         <Route element={<HomePage/>} path="/lobriary/homepage"/>
         <Route element={<OnePlayer/>} path="lobriary/user/:id"/>
+        // add routes for create new lobby and upgrade (update lobby)
       </Routes>
     </div>
   );

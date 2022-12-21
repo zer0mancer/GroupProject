@@ -11,6 +11,12 @@ function App() {
         <Route element={<Navigate to="/lobriary/homepage"/>} path="/"/>
         <Route element={<HomePage/>} path="/lobriary/homepage"/>
         <Route element={<OnePlayer/>} path="lobriary/user/:id"/>
+
+        {/* Still need the following! Prototype paths */}
+        {/* <Route path='/lobriary/user/login' element={LoginForm}></Route>
+        <Route path='/lobriary/lobby/add' element={addLobby}></Route>
+        <Route path='/lobriary/lobby/:id' element={oneLobby}></Route> */}
+        
       </Routes>
     </div>
   );

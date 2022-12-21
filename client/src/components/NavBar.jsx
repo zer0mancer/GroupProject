@@ -58,7 +58,7 @@ const NavBar = () => {
 
     //=====REDIRECTS TO ADD LOBBY PAGE=====
     const handleLobbyClick = () => {
-        navigate("/")
+        navigate("/lobriary/lobby/create")
     }
 
   return (

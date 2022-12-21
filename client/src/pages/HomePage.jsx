@@ -7,6 +7,7 @@ const HomePage = () => {
     const [ userId, setUserId ] = useState(sessionStorage.getItem('userId'))
 
     useEffect(() => {
+        // Connor: hardcoding my userId into this to try and bypass error when attempting to navigate to create lobby page
         axios.get(`http://localhost:8000/api/users/${userId}`)
             .then(res => {
                 console.log(res);

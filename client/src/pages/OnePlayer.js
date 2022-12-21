@@ -17,6 +17,7 @@ const OnePlayer = (props) => {
     const [ isEditClicked, setIsEditClicked ] = useState(false);
     const [ formErrors, setFormErrors ] = useState({});
     const [ dataChange, setDataChange ] = useState("");
+    const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -61,7 +62,12 @@ const OnePlayer = (props) => {
     };
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/users/${id}`)
+        axios.get(
+            `http://localhost:8000/api/users/${id}`,
+            {headers:
+            { "Authorization": `Bearer ${accessToken}`}
+            },
+            {withCredentials: true})
             .then((response)=>{
                 console.log(response.data.user);
                 setUsername(response.data.user.username);

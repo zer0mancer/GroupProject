@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import NavButton from './NavButton';
@@ -9,8 +9,11 @@ const NavBar = () => {
 
     const [ isLoginClicked, setIsLoginClicked ] = useState(false);
     const [ isRegistrationClicked, setIsRegistrationClicked] = useState(false);
-    const [ userId, setUserId ] = useState(sessionStorage.getItem('userId'));
     const [ formErrors, setFormErrors ] = useState({});
+    const [ currentUser, setCurrentUser ] = useState({});
+    const [ userId, setUserId ] = useState(localStorage.getItem('userId'));
+    const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
+    
 
     const navigate = useNavigate();
 
@@ -38,7 +41,8 @@ const NavBar = () => {
         axios.post("http://localhost:8000/api/users", userParam) 
           .then(res => { 
             console.log(res);
-            setUserId(sessionStorage.setItem("userId", res.data.newUser._id));
+            setAccessToken(localStorage.setItem('accessToken', res.data.token));
+            setUserId(localStorage.setItem("userId", res.data.user._id));
             setIsRegistrationClicked(false);
           })
           .catch(err => {
@@ -50,21 +54,31 @@ const NavBar = () => {
 
     //=====LOGS OUT USER, REMOVES SESSION DATA AND THEN NAVIGATES BACK HOME=====
     const handleLogout = () => {
-        // sessionStorage.removeItem('accessToken');
-        sessionStorage.removeItem('userId');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userId');
         navigate("/");
         window.location.reload(false)
       };
 
-    //=====REDIRECTS TO ADD LOBBY PAGE=====
-    const handleLobbyClick = () => {
-        navigate("/lobriary/lobby/create")
-    }
+      useEffect(() => {
+        axios.get(
+          `http://localhost:8000/api/users/${userId}`,
+          {headers:
+            { "Authorization": `Bearer ${accessToken}`}
+          },
+          {withCredentials: true}
+        )
+        .then((res) => {
+          console.log(res);
+          setCurrentUser(res.data.user);
+        })
+        .catch(err => console.log(err))
+      }, [])
 
   return (
     <div className="grid grid-cols-3 items-center bg-slate-700 text-white p-2 relative w-full">
         <div>
-            <Link to="/lobriary/user/63a348e889ceb0bfcc3ad0d2" className="hover:text-gray-200 underline">USER NAME</Link>
+            <Link to={`/lobriary/user/${userId}`} className="hover:text-gray-200 underline">{currentUser.username}</Link>
         </div>
         <div className='flex flex-col gap-2'>
             <h1 onClick={handleHomeClick} className="text-3xl font-bold cursor-pointer">The Lobriary</h1>
@@ -80,6 +94,7 @@ const NavBar = () => {
           <div>
               <NavButton onClickHandler={handleLoginClick}>Login</NavButton>
           </div>
+          
         }
         {isLoginClicked && <LoginForm 
         onClickHandler={handleRegistrationClicked}

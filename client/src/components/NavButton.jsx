@@ -2,8 +2,7 @@ import React from 'react'
 
 const NavButton = ({children, onClickHandler}) => {
   return (
-    // connor: taking out onclick => onclickHandler
-    <button className="border border-white rounded p-2 hover:bg-white hover:text-slate-700">{children}</button>
+    <button onClick={() => {onClickHandler()}}className="border border-white rounded font-bold p-2 hover:bg-white hover:text-slate-700 hover:font-bold">{children}</button>
   )
 }
 

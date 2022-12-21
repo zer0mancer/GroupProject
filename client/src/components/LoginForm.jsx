@@ -7,7 +7,8 @@ const LoginForm = ({onClickHandler}) => {
     const [ password, setPassword ] = useState("");
     const [ formErrors, setFormErrors ] = useState()
     const [ dataChange, setDataChange ] = useState("");
-    const [ accessToken, setAccessToken ] = useState(sessionStorage.getItem('accessToken'));
+    const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
+    const [ userId, setUserId ] = useState(localStorage.getItem('userId'));
 
     const navigate = useNavigate();
 
@@ -20,12 +21,13 @@ const LoginForm = ({onClickHandler}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/rotten_potatoes/user/login', {
+        axios.post('http://localhost:8000/api/user/login', {
             email,
             password,})
         .then(res =>
             {console.log(res);
-            setAccessToken(sessionStorage.setItem('accessToken', res.data.token));
+            setAccessToken(localStorage.setItem('accessToken', res.data.token));
+            setUserId(localStorage.setItem('userId', res.data.user._id))
             navigate("/");
             window.location.reload(false);
         })

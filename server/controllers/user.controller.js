@@ -81,7 +81,7 @@ const UserController = {
                 return response.status(400).json({error: "That password doesn't seem quite right, try again"});
             }
             const userToken = jwt.sign({
-                id: user._id
+                id: existingUser._id
             }, secretCode);
             response.cookie("userToken", userToken,
                 {httpOnly: true}

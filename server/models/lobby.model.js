@@ -18,7 +18,15 @@ const LobbySchema = new mongoose.Schema({
     platform: {
         type: String,
         required: [true, "We need to know what platform this game is being hosted on"]
-    }
+    },
+    creator: {
+        type: mongoose.Types.ObjectId,
+        ref: "Users"
+    },
+    players: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Users"
+    }]
 },{timestamps:true})
 
 // >>Might need to be changed to Lobbys if there is an error.

@@ -56,11 +56,6 @@ const NavBar = () => {
         window.location.reload(false)
       };
 
-    //=====REDIRECTS TO ADD LOBBY PAGE=====
-    const handleLobbyClick = () => {
-        navigate("/")
-    }
-
   return (
     <div className="grid grid-cols-3 items-center bg-slate-700 text-white p-2 relative w-full">
         <div>
@@ -68,8 +63,8 @@ const NavBar = () => {
         </div>
         <div className='flex flex-col gap-2'>
             <h1 onClick={handleHomeClick} className="text-3xl font-bold cursor-pointer">The Lobriary</h1>
-            <Link to="">
-                <NavButton onClickHandler={handleLobbyClick}>Make a lobby</NavButton>
+            <Link to="/lobriary/lobby/create">
+                <NavButton >Make a lobby</NavButton>
             </Link>
         </div>
         {userId ? 

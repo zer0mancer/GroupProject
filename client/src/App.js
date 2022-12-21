@@ -6,6 +6,7 @@ import UpdateLobby from "./pages/UpdateLobby";
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
+  
   return (
     <div className="h-screen bg-gray-50 flex flex-col items-center">
       <NavBar/>

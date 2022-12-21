@@ -20,7 +20,7 @@ const LoginForm = ({onClickHandler}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/rotten_potatoes/user/login', {
+        axios.post('http://localhost:8000/api/user/login', {
             email,
             password,})
         .then(res =>
@@ -31,8 +31,8 @@ const LoginForm = ({onClickHandler}) => {
         })
         .catch(err => {
             console.log(err);
-            const errRes = err.response.data.error
-            setFormErrors(errRes);
+            // const errRes = err.response.data.error
+            // setFormErrors(errRes);
         })
     }
 

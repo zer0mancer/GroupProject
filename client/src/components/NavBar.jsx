@@ -64,12 +64,12 @@ const NavBar = () => {
   return (
     <div className="grid grid-cols-3 items-center bg-slate-700 text-white p-2 relative w-full">
         <div>
-            <Link to="/lobriary/user/63a10803e2cd7833b2da60aa" className="hover:text-gray-200 underline">USER NAME</Link>
+            <Link to="/lobriary/user/63a348e889ceb0bfcc3ad0d2" className="hover:text-gray-200 underline">USER NAME</Link>
         </div>
         <div className='flex flex-col gap-2'>
             <h1 onClick={handleHomeClick} className="text-3xl font-bold cursor-pointer">The Lobriary</h1>
-            <Link to="">
-                <NavButton onClickHandler={handleLobbyClick}>Make a lobby</NavButton>
+            <Link to="/lobriary/lobby/create">
+                <NavButton >Make a lobby</NavButton>
             </Link>
         </div>
         {userId ? 

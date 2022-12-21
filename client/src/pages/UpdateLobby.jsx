@@ -166,7 +166,7 @@ return (
 
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Host </button>
+                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Update Lobby </button>
         </form>
     </div>
         <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Return </button>

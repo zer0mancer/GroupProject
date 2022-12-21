@@ -31,18 +31,24 @@ const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-            .post("http://localhost:8000/api/lobbies")
-        onSubmitHandler({
+        axios.post("http://localhost:8000/api/lobbies", {
             game, 
-            title,
-            limit,
+            title, 
+            limit, 
             platform
+        })
+        .then((res) => {
+            console.log(res);
+            console.log(res.data);
+            setGame("");
+            setTitle("");
+            setLimit("");
+            setPlatform("");
+        })
+        .catch((err) => {
+            console.log(err);
         });
-        setGame("");
-        setTitle("");
-        setLimit("");
-        setPlatform("");
+
     }
 
   return (
@@ -55,35 +61,35 @@ const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
 
                 <div className="flex flex-col gap-2">
 
-                    {formErrors.game && <p className="text-center text-red-500">{formErrors.game.message}</p>}
+                    {/* {formErrors.game && <p className="text-center text-red-500">{formErrors.game.message}</p>} */}
                         <label htmlFor="game">What game are you running?</label>
                         <input id="game" className="border border-black rounded w-[400px]" type="text" onChange={handleGame} value={game}/>
                     </div>
                     
                     <div className="flex flex-col gap-2">
-                    {formErrors.title && <p className="text-center text-red-500">{formErrors.title.message}</p>}
+                    {/* {formErrors.title && <p className="text-center text-red-500">{formErrors.title.message}</p>} */}
                         <label htmlFor="title">Lobby Name: </label>
                         <input id="title" className="border border-black rounded" type="text" onChange={handleTitle} value={title}/>
                     </div>
 
                     <div className="flex flex-col gap-2">
-                    {formErrors.limit && <p className="text-center text-red-500">{formErrors.limit.message}</p>}
+                    {/* {formErrors.limit && <p className="text-center text-red-500">{formErrors.limit.message}</p>} */}
                         <label htmlFor="limit">Max Players: </label>
                         <input id="limit" className="border border-black rounded" type="Number" onChange={handleLimit} value={limit}/>
                     </div>
 
                     <div className="flex flex-col gap-2">
-                    {formErrors.platform && <p className="text-center text-red-500">{formErrors.platform.message}</p>}
+                    {/* {formErrors.platform && <p className="text-center text-red-500">{formErrors.platform.message}</p>} */}
                         <label htmlFor="platform">Joinable on: (Console) </label>
                         <input id="platform" className="border border-black rounded" type="text" onChange={handlePlatform} value={platform}/>
                     </div>
 
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Update Lobby </button>
+                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Host </button>
         </form>
     </div>
-        <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Return </button>
+        <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button>
     </div>
   )
 }

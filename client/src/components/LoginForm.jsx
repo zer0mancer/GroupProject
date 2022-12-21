@@ -37,7 +37,7 @@ const LoginForm = ({onClickHandler}) => {
     }
 
     return (
-    <div className='mb-96 absolute top-[103px] text-black right-10 z-100 bg-white border border-black p-4'>
+    <div className='mb-96 absolute top-[103px] text-white right-10 z-100 bg-slate-700 shadow rounded p-4'>
         <div className='flex flex-col items-center'>
             <h1 className="text-2xl m-3">Login User</h1>
         <form onSubmit={handleSubmit} className="w-[500px]  flex flex-col">
@@ -46,15 +46,15 @@ const LoginForm = ({onClickHandler}) => {
                     <div className="flex flex-col gap-2">
                     {formErrors && <p className="text-center text-red-500">{formErrors}</p>}
                         <label htmlFor="email">Email: </label>
-                        <input className="border border-black rounded w-[400px]" type="text" onChange={handleEmail} value={email}/>
+                        <input className="text-slate-700 border border-black rounded w-[400px]" type="text" onChange={handleEmail} value={email}/>
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="password">Password: </label>
-                        <input className="border border-black rounded" type="password" onChange={handlePassword} value={password}/>
+                        <input className="text-slate-700 border border-black rounded" type="password" onChange={handlePassword} value={password}/>
                     </div>
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white">Login</button>
+                <button className="border border-white text-white rounded p-2 m-2 bg-slate-700 hover:bg-white hover:text-slate-700">Login</button>
         </form>
         <div className="flex gap-2">
             <h1>New User?</h1>

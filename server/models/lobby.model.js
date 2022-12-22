@@ -13,7 +13,8 @@ const LobbySchema = new mongoose.Schema({
     },
     limit:{
         type: Number,
-        required: [true, "A player limit is required for your lobby!"]
+        required: [true, "A player limit is required for your lobby!"],
+        min: [2, "Go play a single player game if you're not playing with other players."]
     },
     platform: {
         type: String,

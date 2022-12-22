@@ -1,14 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
-const LobbiesTable = ({ lobby }) => {
+const LobbiesTable = ({ lobby, setDataChange }) => {
 
     const [ userId, setUserId ] = useState(localStorage.getItem('userId'));
-    const [ creatorId, setCreatorId ] = useState()
+    const [ creatorId, setCreatorId ] = useState();
+    const [ playersInLobby, setPlayersInLobby ] = useState(lobby.players);
+    const [ playerCount, setPlayerCount ] = useState(lobby.players.length);
+    
+    const filteredPlayer = playersInLobby.filter((lobbyId) => lobbyId === userId)
+ 
+    const handleJoinLobby = (lobbyId, userId) => {
+        const newPlayersArr = [...playersInLobby, userId]
+        axios.put(`http://localhost:8000/api/lobbies/${lobbyId}`,{
+            players: newPlayersArr
+        })
+        .then(res => {
+            console.log(res);
+            setDataChange(Math.random());
+        })
+        .catch(err => console.log(err))
+    }
+
+    const handleLeaveLobby = (lobbyId, userId) => {
+        const newPlayers = playersInLobby.filter((playerId) => playerId !== userId);
+        console.log(newPlayers, "newPlayers")
+        axios.put(`http://localhost:8000/api/lobbies/${lobbyId}`,{
+            players: newPlayers
+        })
+        .then(res => {console.log(res)})
+        .catch(err => {console.log(err)})
+    }
 
   return (
-    <div className='text-slate-700 flex flex-col gap-4 justify-center'>
+    <div className='text-slate-700 flex flex-col gap-4 justify-center m-4'>
+        <h1>{filteredPlayer}</h1>
         <div className='shadow rounded'>
             <table className=''>
                 <thead>
@@ -23,22 +51,29 @@ const LobbiesTable = ({ lobby }) => {
                 <tbody className='bg-white'>
                     <tr>
                         <td className="border p-2 w-96">{lobby.game}</td>
-                        <td className="border p-2 w-1">1/{lobby.limit}</td>
+                        <td className="border p-2 w-1">{playerCount}/{lobby.limit}</td>
                         <td className="border p-2 w-96">{lobby.title}</td>
-                        <td className="border p-2">{lobby.platform}</td>
+                        <td className="border p-2 w-32">{lobby.platform}</td>
                         <td className="border p-2">
-                            {userId == lobby.creatorId ?
-                                <Link to='/lobriary/lobby/edit/:id'>
-                                    <button className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
-                                        Edit Lobby
-                                    </button>
-                                </Link>    
+                            {playerCount === lobby.limit && filteredPlayer == userId  ?
+                                <button onClick={() => handleLeaveLobby(lobby._id, userId)} className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
+                                    Leave Lobby
+                                </button>
                             :
-                                <Link to='/'>
-                                    <button className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
+                                playerCount === lobby.limit?
+                                <button disabled onClick={() => handleJoinLobby(lobby._id, userId)} className="border bg-gray-400 text-gray-200 border-slate-700 rounded p-2">
+                                    Join Lobby
+                                </button>
+                            :
+                                filteredPlayer == userId ?
+                                    <button onClick={() => handleLeaveLobby(lobby._id, userId)} className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
+                                        Leave Lobby
+                                    </button>
+                                :
+                                    <button  onClick={() => handleJoinLobby(lobby._id, userId)} className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
                                         Join Lobby
                                     </button>
-                                </Link>    
+                                
                             }
                         </td>
                     </tr>

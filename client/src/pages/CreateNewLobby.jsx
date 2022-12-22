@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-
+// need to pass in validations 
 const CreateNewLobby = () => {
 
     const [ game, setGame ] = useState("");
@@ -39,7 +39,7 @@ const CreateNewLobby = () => {
             title, 
             limit, 
             platform,
-            creatorId
+            creatorId,
         })
         .then((res) => {
             console.log(res);
@@ -90,10 +90,10 @@ const CreateNewLobby = () => {
 
                 </section>
             </div>
-                <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Host </button></Link>
+                <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" value='submit'> Host </button></Link>
         </form>
     </div>
-        <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button>
+        <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button></Link>
     </div>
   )
 }

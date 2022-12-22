@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-const UpdateProduct = ({ onSubmitHandler, formErrors}) => {
+const EditLobby = ({formErrors}) => {
     const { id } = useParams();
     const [game, setGame] = useState("");
     const [title, setTitle] = useState("");
@@ -174,4 +174,4 @@ return (
   );
 };
 
-export default UpdateProduct;
+export default EditLobby;

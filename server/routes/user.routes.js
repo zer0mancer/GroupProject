@@ -1,6 +1,5 @@
 
 const UserController = require('../controllers/user.controller');
-const User = require('../models/user.model');
 const {authenticate} = require ('../config/jwt.config')
 
 const routes = (app)=>{
@@ -8,7 +7,6 @@ const routes = (app)=>{
     app.get('/api/test', UserController.test)
     app.post('/api/users', UserController.create)
     app.get('/api/users', UserController.allPlayers)
-    // deleted authenticate
     app.get('/api/users/:id', UserController.playerOne)
     app.put('/api/users/:id', UserController.update)
     app.delete('/api/users/:id', UserController.delete)

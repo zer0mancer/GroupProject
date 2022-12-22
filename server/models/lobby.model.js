@@ -29,6 +29,5 @@ const LobbySchema = new mongoose.Schema({
     }]
 },{timestamps:true})
 
-// >>Might need to be changed to Lobbys if there is an error.
 const Lobby = mongoose.model('Lobbies', LobbySchema);
 module.exports = Lobby;

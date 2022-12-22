@@ -60,7 +60,7 @@ const NavBar = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId');
         navigate("/");
-        window.location.reload(false)
+        // window.location.reload(false)
       };
 
       useEffect(() => {
@@ -81,7 +81,7 @@ const NavBar = () => {
   return (
     <div className="grid grid-cols-3 items-center bg-slate-700 text-white p-2 relative w-full">
         <div>
-            {/* <Link to={`/lobriary/user/${userId}`} className="hover:text-gray-200 underline">{currentUser.username}</Link> */}
+            <Link to={`/lobriary/user/${userId}`} className="hover:text-gray-200 underline">{currentUser.username}</Link>
         </div>
         <div className='flex flex-col gap-2'>
             <h1 onClick={handleHomeClick} className="text-3xl font-bold cursor-pointer">The Lobriary</h1>
@@ -91,6 +91,7 @@ const NavBar = () => {
         </div>
         {userId ? 
           <div>
+
               <NavButton onClickHandler={handleLogout}>Logout</NavButton>
           </div>
         :

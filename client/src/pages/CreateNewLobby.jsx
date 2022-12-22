@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
+const CreateNewLobby = () => {
 
     const [ game, setGame ] = useState("");
     const [ title, setTitle ] = useState("");
@@ -87,7 +87,7 @@ const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
 
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Host </button>
+                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Host </button>
         </form>
     </div>
         <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button>

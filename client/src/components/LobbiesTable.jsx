@@ -36,7 +36,6 @@ const LobbiesTable = ({ lobby, setDataChange }) => {
 
   return (
     <div className='text-slate-700 flex flex-col gap-4 justify-center m-4'>
-        <h1>{filteredPlayer}</h1>
         <div className='shadow rounded'>
             <table className=''>
                 <thead>

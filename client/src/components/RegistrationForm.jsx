@@ -6,8 +6,6 @@ import axios from 'axios';
 const RegistrationForm = ({ onSubmitHandler, formErrors}) => {
 
     const [ username, setUsername ] = useState("");
-    // const [ firstName, setFirstName ] = useState("");
-    // const [ lastName, setLastName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("")
@@ -18,12 +16,7 @@ const RegistrationForm = ({ onSubmitHandler, formErrors}) => {
     const handleUsername = (e) => {
         setUsername(e.target.value)
     };
-    // const handleFirstName = (e) => {
-    //     setFirstName(e.target.value)
-    // };
-    // const handleLastName = (e) => {
-    //     setLastName(e.target.value)
-    // };
+
     const handleEmail = (e) => {
         setEmail(e.target.value)
     }; 
@@ -46,8 +39,6 @@ const RegistrationForm = ({ onSubmitHandler, formErrors}) => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        navigate("/");
-        window.location.reload(false);
     }
 
   return (
@@ -62,16 +53,6 @@ const RegistrationForm = ({ onSubmitHandler, formErrors}) => {
                         <label htmlFor="username">Username: </label>
                         <input id="username" className="text-slate-700 border border-black rounded w-[400px]" type="text" onChange={handleUsername} value={username}/>
                     </div>
-                    {/* <div className="flex flex-col gap-2">
-                    {formErrors.firstName && <p className="text-center text-red-500">{formErrors.firstName.message}</p>}
-                        <label htmlFor="firstName">First Name: </label>
-                        <input id="firstName" className="border border-black rounded w-[400px]" type="text" onChange={handleFirstName} value={firstName}/>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                    {formErrors.lastName && <p className="text-center text-red-500">{formErrors.lastName.message}</p>}
-                        <label htmlFor="lastName">Last Name: </label>
-                        <input id="lastName" className="border border-black rounded" type="text" onChange={handleLastName} value={lastName}/>
-                    </div> */}
                     <div className="flex flex-col gap-2">
                     {formErrors.email && <p className="text-center text-red-500">{formErrors.email.message}</p>}
                         <label htmlFor="email">Email: </label>

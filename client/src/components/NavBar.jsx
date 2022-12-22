@@ -5,6 +5,7 @@ import NavButton from './NavButton';
 import RegistrationForm from './RegistrationForm';
 import axios from 'axios';
 
+
 const NavBar = () => {
 
     const [ isLoginClicked, setIsLoginClicked ] = useState(false);

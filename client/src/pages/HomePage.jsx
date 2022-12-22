@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import LobbiesTable from '../components/LobbiesTable';
+import ViewLobby from './ViewLobby';
 
 const HomePage = () => {
 

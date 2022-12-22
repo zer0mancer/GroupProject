@@ -18,7 +18,7 @@ const LobbyController = {
     },
 
     oneLobby: (request, response)=>{
-        Lobby.find({_id:request.params.id})
+        Lobby.findOne({_id:request.params.id})
             .then((server)=>{
                 // console.log(server)
                 response.status(200).json({server:server,message: "Lobby Located"})

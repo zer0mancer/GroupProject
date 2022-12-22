@@ -53,7 +53,9 @@ const LobbiesTable = ({ lobby }) => {
                     <tr>
                         <td className="border p-2 w-96">{lobby.game}</td>
                         <td className="border p-2 w-1">{playerCount}/{lobby.limit}</td>
-                        <td className="border p-2 w-96">{lobby.title}</td>
+                        <Link to={`http://localhost:8000/api/lobbies/${lobby._id}`}>
+                            <td className="border p-2 w-96">{lobby.title}</td>
+                        </Link>
                         <td className="border p-2 w-32">{lobby.platform}</td>
                         <td className="border p-2">
                             {!userId ?

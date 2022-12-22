@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
-const LobbiesTable = ({ lobby, setDataChange }) => {
+const LobbiesTable = ({ lobby }) => {
 
     const [ userId, setUserId ] = useState(localStorage.getItem('userId'));
-    const [ creatorId, setCreatorId ] = useState();
     const [ playersInLobby, setPlayersInLobby ] = useState(lobby.players);
     const [ playerCount, setPlayerCount ] = useState(lobby.players.length);
     
@@ -19,7 +18,7 @@ const LobbiesTable = ({ lobby, setDataChange }) => {
         })
         .then(res => {
             console.log(res);
-            setDataChange(Math.random());
+            window.location.reload(false)
         })
         .catch(err => console.log(err))
     }
@@ -30,7 +29,10 @@ const LobbiesTable = ({ lobby, setDataChange }) => {
         axios.put(`http://localhost:8000/api/lobbies/${lobbyId}`,{
             players: newPlayers
         })
-        .then(res => {console.log(res)})
+        .then(res => {
+            console.log(res);
+            window.location.reload(false)
+        })
         .catch(err => {console.log(err)})
     }
 

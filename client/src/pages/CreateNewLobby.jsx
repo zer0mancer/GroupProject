@@ -11,6 +11,7 @@ const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
     const [ platform, setPlatform ] = useState("");
     const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
 
+    
     const navigate = useNavigate();
 
     const handleGame = (e) => {
@@ -35,7 +36,7 @@ const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
             game, 
             title, 
             limit, 
-            platform
+            platform,          
         })
         .then((res) => {
             console.log(res);

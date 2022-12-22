@@ -44,6 +44,8 @@ const NavBar = () => {
             setAccessToken(localStorage.setItem('accessToken', res.data.token));
             setUserId(localStorage.setItem("userId", res.data.user._id));
             setIsRegistrationClicked(false);
+            navigate("/");
+            window.location.reload(false);
           })
           .catch(err => {
             console.log(err);

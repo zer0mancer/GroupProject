@@ -5,7 +5,7 @@ import { useState } from 'react';
 const LobbiesTable = ({ lobby }) => {
 
     const [ userId, setUserId ] = useState(localStorage.getItem('userId'));
-    const [ creatorId, setCreatorId ] = useState()
+    const [ creatorId, setCreatorId ] = useState();
 
   return (
     <div className='text-slate-700 flex flex-col gap-4 justify-center'>
@@ -24,7 +24,7 @@ const LobbiesTable = ({ lobby }) => {
                     <tr>
                         <td className="border p-2 w-96">{lobby.game}</td>
                         <td className="border p-2 w-1">1/{lobby.limit}</td>
-                        <td className="border p-2 w-96">{lobby.title}</td>
+                        <Link to={`/lobriary/lobby/view/${lobby._id}`}><td className="border p-2 w-96">{lobby.title}</td></Link>
                         <td className="border p-2">{lobby.platform}</td>
                         <td className="border p-2">
                             {userId == lobby.creatorId ?
@@ -34,7 +34,7 @@ const LobbiesTable = ({ lobby }) => {
                                     </button>
                                 </Link>    
                             :
-                                <Link to='/'>
+                                <Link to='/lobriary/lobby/:id'>
                                     <button className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
                                         Join Lobby
                                     </button>

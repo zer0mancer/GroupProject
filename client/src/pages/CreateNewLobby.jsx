@@ -90,7 +90,7 @@ const CreateNewLobby = () => {
 
                 </section>
             </div>
-                <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" value='submit'> Host </button></Link>
+                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" value='submit'> Host </button>
         </form>
     </div>
         <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button></Link>

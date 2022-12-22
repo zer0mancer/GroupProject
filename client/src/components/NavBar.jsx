@@ -56,6 +56,7 @@ const NavBar = () => {
 
     //=====LOGS OUT USER, REMOVES SESSION DATA AND THEN NAVIGATES BACK HOME=====
     const handleLogout = () => {
+        console.log("logout clicked");
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId');
         navigate("/");
@@ -90,6 +91,7 @@ const NavBar = () => {
         </div>
         {userId ? 
           <div>
+
               <NavButton onClickHandler={handleLogout}>Logout</NavButton>
           </div>
         :

@@ -19,9 +19,10 @@ const LobbySchema = new mongoose.Schema({
         type: String,
         required: [true, "We need to know what platform this game is being hosted on"]
     },
-    creator: {
+    creatorId: {
         type: mongoose.Types.ObjectId,
-        ref: "Users"
+        ref: "Users", 
+        required: [true, "User must be logged in before creating a lobby"]
     },
     players: [{
         type: mongoose.Types.ObjectId,
@@ -29,6 +30,5 @@ const LobbySchema = new mongoose.Schema({
     }]
 },{timestamps:true})
 
-// >>Might need to be changed to Lobbys if there is an error.
 const Lobby = mongoose.model('Lobbies', LobbySchema);
 module.exports = Lobby;

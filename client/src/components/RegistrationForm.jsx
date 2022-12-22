@@ -8,8 +8,8 @@ const RegistrationForm = ({ onSubmitHandler, formErrors}) => {
     const [ username, setUsername ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
-    const [ confirmPassword, setConfirmPassword ] = useState("")
-    // const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
+    const [ confirmPassword, setConfirmPassword ] = useState("");
+    const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
 
     const navigate = useNavigate();
 

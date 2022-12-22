@@ -2,14 +2,16 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-
-const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
+// need to pass in validations 
+const CreateNewLobby = () => {
 
     const [ game, setGame ] = useState("");
     const [ title, setTitle ] = useState("");
     const [ limit, setLimit ] = useState(0);
     const [ platform, setPlatform ] = useState("");
+    const [ creatorId, setCreatorId ] = useState(localStorage.getItem('userId'));
     const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
+
 
     
     const navigate = useNavigate();
@@ -36,7 +38,8 @@ const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
             game, 
             title, 
             limit, 
-            platform,          
+            platform,
+            creatorId,
         })
         .then((res) => {
             console.log(res);
@@ -87,10 +90,10 @@ const CreateNewLobby = ({ onSubmitHandler, formErrors}) => {
 
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white"> Host </button>
+                <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" value='submit'> Host </button></Link>
         </form>
     </div>
-        <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button>
+        <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button></Link>
     </div>
   )
 }

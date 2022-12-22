@@ -17,7 +17,7 @@ const UserController = {
                     id: newUser._id
                 }, secretCode)
                 console.log(newUser)
-                response.status(201).cookie("userToken", userToken, {httpOnly: true}).json({message: "user created with token", user: newUser, token: userToken})
+                response.status(201).cookie("userToken", userToken,     {httpOnly: true}).json({message: "user created with token", user: newUser, token: userToken})
             })
             .catch((err0r)=>{
                 response.status(400).json({message: "User is not playable. They are an NPC", error: err0r})

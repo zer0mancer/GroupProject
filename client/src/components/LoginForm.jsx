@@ -33,8 +33,8 @@ const LoginForm = ({onClickHandler}) => {
         })
         .catch(err => {
             console.log(err);
-            // const errRes = err.response.data.error
-            // setFormErrors(errRes);
+            const errRes = err.response.data.error
+            setFormErrors(errRes);
         })
     }
 

@@ -56,7 +56,10 @@ const LobbiesTable = ({ lobby }) => {
                         <td className="border p-2 w-96">{lobby.title}</td>
                         <td className="border p-2 w-32">{lobby.platform}</td>
                         <td className="border p-2">
-                            {playerCount === lobby.limit && filteredPlayer == userId  ?
+                            {!userId ?
+                                <div></div>
+                            :
+                                playerCount === lobby.limit && filteredPlayer == userId  ?
                                 <button onClick={() => handleLeaveLobby(lobby._id, userId)} className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
                                     Leave Lobby
                                 </button>

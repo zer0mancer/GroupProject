@@ -86,7 +86,7 @@ const NavBar = () => {
         <div className='flex flex-col gap-2'>
             <h1 onClick={handleHomeClick} className="text-3xl font-bold cursor-pointer">The Lobriary</h1>
             <Link to="/lobriary/lobby/create">
-                <NavButton >Make a lobby</NavButton>
+                <button className="border border-white rounded font-bold p-2 hover:bg-white hover:text-slate-700 hover:font-bold" >Make a lobby</button>
             </Link>
         </div>
         {userId ? 

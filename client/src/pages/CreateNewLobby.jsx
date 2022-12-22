@@ -9,7 +9,9 @@ const CreateNewLobby = () => {
     const [ title, setTitle ] = useState("");
     const [ limit, setLimit ] = useState(0);
     const [ platform, setPlatform ] = useState("");
+    const [ creatorId, setCreatorId ] = useState(localStorage.getItem('userId'));
     const [ accessToken, setAccessToken ] = useState(localStorage.getItem('accessToken'));
+
 
     
     const navigate = useNavigate();
@@ -36,7 +38,8 @@ const CreateNewLobby = () => {
             game, 
             title, 
             limit, 
-            platform,          
+            platform,
+            creatorId
         })
         .then((res) => {
             console.log(res);
@@ -87,7 +90,7 @@ const CreateNewLobby = () => {
 
                 </section>
             </div>
-                <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Host </button>
+                <Link to='/'><button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Host </button></Link>
         </form>
     </div>
         <button className="border border-black rounded p-2 m-2 bg-slate-700 hover:bg-slate-600 text-white" > Return </button>

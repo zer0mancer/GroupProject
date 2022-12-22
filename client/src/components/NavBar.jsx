@@ -60,7 +60,7 @@ const NavBar = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId');
         navigate("/");
-        // window.location.reload(false)
+        window.location.reload(false)
       };
 
       useEffect(() => {

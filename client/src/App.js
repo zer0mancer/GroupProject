@@ -17,9 +17,7 @@ function App() {
         <Route element={<CreateNewLobby/>} path="/lobriary/lobby/create" />
         <Route element={<UpdateLobby/>} path="/lobriary/lobby/update/:id" />
 
-        {/* Still need the following! Prototype paths */}
-        {/* <Route path='/lobriary/user/login' element={LoginForm}></Route>
-        <Route path='/lobriary/lobby/add' element={addLobby}></Route>
+        {/* Still need the following! Prototype paths 
         <Route path='/lobriary/lobby/:id' element={oneLobby}></Route> */}
         
       </Routes>

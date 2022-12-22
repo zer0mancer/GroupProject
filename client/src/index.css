@@ -6,3 +6,9 @@
   margin: 0px auto;
   padding: 0px auto;
 }
+
+#image{
+  background-image: url('https://wallpaperforu.com/wp-content/uploads/2022/03/Wallpaper-Elden-Ring-4k-3840x216121-1.jpg');
+  background-position: center;
+  background-size: cover;
+}

@@ -54,6 +54,7 @@ const NavBar = () => {
 
     //=====LOGS OUT USER, REMOVES SESSION DATA AND THEN NAVIGATES BACK HOME=====
     const handleLogout = () => {
+        console.log("logout clicked");
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId');
         navigate("/");
@@ -78,7 +79,7 @@ const NavBar = () => {
   return (
     <div className="grid grid-cols-3 items-center bg-slate-700 text-white p-2 relative w-full">
         <div>
-            <Link to={`/lobriary/user/${userId}`} className="hover:text-gray-200 underline">{currentUser.username}</Link>
+            {/* <Link to={`/lobriary/user/${userId}`} className="hover:text-gray-200 underline">{currentUser.username}</Link> */}
         </div>
         <div className='flex flex-col gap-2'>
             <h1 onClick={handleHomeClick} className="text-3xl font-bold cursor-pointer">The Lobriary</h1>

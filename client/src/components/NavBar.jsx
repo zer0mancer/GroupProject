@@ -45,7 +45,7 @@ const NavBar = () => {
             setUserId(localStorage.setItem("userId", res.data.user._id));
             setIsRegistrationClicked(false);
             navigate("/");
-            window.location.reload(false);
+            // window.location.reload(false);
           })
           .catch(err => {
             console.log(err);
@@ -90,6 +90,7 @@ const NavBar = () => {
         </div>
         {userId ? 
           <div>
+
               <NavButton onClickHandler={handleLogout}>Logout</NavButton>
           </div>
         :

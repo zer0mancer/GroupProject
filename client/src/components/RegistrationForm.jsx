@@ -46,8 +46,7 @@ const RegistrationForm = ({ onSubmitHandler, formErrors}) => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        navigate("/");
-        window.location.reload(false);
+
     }
 
   return (

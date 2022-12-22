@@ -5,7 +5,7 @@ import ViewLobby from './ViewLobby';
 
 const HomePage = () => {
 
-    const [ allLobbies, setAllLobbies ] = useState([])
+    const [ allLobbies, setAllLobbies ] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/lobbies`)
@@ -20,7 +20,9 @@ const HomePage = () => {
     <div className='flex flex-col gap-4'>
       <h1 className="text-3xl font-bold text-center">Welcome!</h1>
       {allLobbies && allLobbies.map((lobby, index) => {
-          return(<LobbiesTable lobby={lobby} key={lobby._id}/>)
+          return(<LobbiesTable 
+            lobby={lobby}
+            key={lobby._id}/>)
       })}
     </div>
   )

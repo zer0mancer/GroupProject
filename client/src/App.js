@@ -9,7 +9,7 @@ import ViewLobby from "./pages/ViewLobby";
 function App() {
   
   return (
-    <div className="h-screen bg-gray-50 flex flex-col items-center">
+    <div className="h-screen bg-gray-50 flex flex-col items-center" id="image">
       <NavBar/>
       <Routes>
         <Route element={<Navigate to="/lobriary/homepage"/>} path="/"/>

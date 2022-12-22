@@ -99,7 +99,6 @@ const OnePlayer = (props) => {
                         </div> */}
                 <AiOutlineEdit onClick={() => handleEditClick()} color="green" size="25" className="hover:border hover:border-green-500 hover:rounded hover:cursor-pointer"/>
                 <DeleteButton dataId={userId}>Delete User</DeleteButton>
-                <Link to='/'><button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 mt-3 rounded-full">Cancel</button></Link>
             </div>
                 :
             <form onSubmit={handleSubmit} className="flex flex-col gap-2 ">

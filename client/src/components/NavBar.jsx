@@ -45,7 +45,7 @@ const NavBar = () => {
             setUserId(localStorage.setItem("userId", res.data.user._id));
             setIsRegistrationClicked(false);
             navigate("/");
-            // window.location.reload(false);
+            window.location.reload(false);
           })
           .catch(err => {
             console.log(err);
@@ -56,6 +56,7 @@ const NavBar = () => {
 
     //=====LOGS OUT USER, REMOVES SESSION DATA AND THEN NAVIGATES BACK HOME=====
     const handleLogout = () => {
+        console.log("logout clicked");
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userId');
         navigate("/");

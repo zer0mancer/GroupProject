@@ -1,6 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const LobbiesTable = ({ lobby }) => {
+
+    const [ userId, setUserId ] = useState(localStorage.getItem('userId'));
+    const [ creatorId, setCreatorId ] = useState()
 
   return (
     <div className='text-slate-700 flex flex-col gap-4 justify-center'>
@@ -22,7 +27,19 @@ const LobbiesTable = ({ lobby }) => {
                         <td className="border p-2 w-96">{lobby.title}</td>
                         <td className="border p-2">{lobby.platform}</td>
                         <td className="border p-2">
-                            <button className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">Join Lobby</button>
+                            {userId == lobby.creatorId ?
+                                <Link to='/lobriary/lobby/edit/:id'>
+                                    <button className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
+                                        Edit Lobby
+                                    </button>
+                                </Link>    
+                            :
+                                <Link to='/'>
+                                    <button className="border border-slate-700 rounded p-2 hover:bg-slate-700 hover:text-white">
+                                        Join Lobby
+                                    </button>
+                                </Link>    
+                            }
                         </td>
                     </tr>
                 </tbody>

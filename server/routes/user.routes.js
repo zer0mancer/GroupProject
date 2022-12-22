@@ -1,6 +1,5 @@
 
 const UserController = require('../controllers/user.controller');
-const User = require('../models/user.model');
 const {authenticate} = require ('../config/jwt.config')
 
 const routes = (app)=>{

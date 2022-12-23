@@ -47,7 +47,6 @@ const OnePlayer = (props) => {
         axios.put(`http://localhost:8000/api/users/${id}`, {
             username,
             email,
-            // platform
         })
             .then(res => {
                 console.log(res);

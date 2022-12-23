@@ -18,8 +18,7 @@ function App() {
         <Route element={<CreateNewLobby/>} path="/lobriary/lobby/create" />
         <Route element={<EditLobby/>} path="/lobriary/lobby/edit/:id" />
         <Route element={<ViewLobby/>} path='/lobriary/lobby/view/:id' />
-        {/* Still need the following! Prototype paths 
-        <Route path='/lobriary/lobby/:id' element={oneLobby}></Route> */}
+
         
       </Routes>
     </div>
